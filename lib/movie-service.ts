@@ -7,6 +7,9 @@ interface OmdbResponse {
   Poster?: string;
   Actors?: string;
   Year?: string;
+  Released?: string;
+  Runtime?: string;
+  Genre?: string;
   imdbRating?: string;
   Plot?: string;
   Ratings?: Array<{ Source: string; Value: string }>;
@@ -117,6 +120,9 @@ export async function getMovieInsights(imdbId: string): Promise<MovieInsightResp
       .map((actor) => actor.trim())
       .filter(Boolean),
     releaseYear: movie.Year ?? "N/A",
+    releaseDate: movie.Released && movie.Released !== "N/A" ? movie.Released : "N/A",
+    runtime: movie.Runtime && movie.Runtime !== "N/A" ? movie.Runtime : "N/A",
+    genre: movie.Genre && movie.Genre !== "N/A" ? movie.Genre : "N/A",
     rating: movie.imdbRating && movie.imdbRating !== "N/A" ? movie.imdbRating : "N/A",
     plot: movie.Plot && movie.Plot !== "N/A" ? movie.Plot : "Plot not available.",
     audienceInsight,

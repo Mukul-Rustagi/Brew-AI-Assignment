@@ -259,6 +259,20 @@ h1 {
   color: #d7e3f2;
 }
 
+.meta-detail-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 10px;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.meta-detail-grid span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
 .card-block {
   margin-top: 16px;
   padding-top: 16px;

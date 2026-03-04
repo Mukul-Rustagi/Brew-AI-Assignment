@@ -16,6 +16,9 @@ export interface MovieInsightResponse {
   poster: string;
   cast: string[];
   releaseYear: string;
+  releaseDate: string;
+  runtime: string;
+  genre: string;
   rating: string;
   plot: string;
   audienceInsight: MovieAudienceInsight;
@@ -27,6 +30,9 @@ export interface OmdbResponse {
   Poster?: string;
   Actors?: string;
   Year?: string;
+  Released?: string;
+  Runtime?: string;
+  Genre?: string;
   imdbRating?: string;
   Plot?: string;
   Ratings?: Array<{ Source: string; Value: string }>;

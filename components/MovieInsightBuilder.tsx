@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { AlertCircle, Clapperboard, Loader2, ScanSearch, Sparkles, Star } from "lucide-react";
+import { AlertCircle, CalendarDays, Clapperboard, Film, Loader2, ScanSearch, Sparkles, Star, Timer } from "lucide-react";
 import { useMemo, useState } from "react";
 import type { MovieInsightResponse, SentimentLabel } from "@/lib/types";
 import { validateImdbId } from "@/lib/validation";
@@ -53,7 +53,12 @@ export function MovieInsightBuilder() {
         return;
       }
 
-      setData(payload.data);
+      setData({
+        ...payload.data,
+        releaseDate: payload.data.releaseDate || "N/A",
+        runtime: payload.data.runtime || "N/A",
+        genre: payload.data.genre || "N/A"
+      });
     } catch {
       setError("Network error while loading movie insights.");
       setData(null);
@@ -134,10 +139,25 @@ export function MovieInsightBuilder() {
                 <Star size={14} /> IMDb {data.rating}
               </span>
               <span>{data.releaseYear}</span>
+              <span>
+                <CalendarDays size={14} /> {data.releaseDate}
+              </span>
               <span>{data.imdbId}</span>
             </div>
 
             <p className="plot">{data.plot}</p>
+
+            <div className="card-block">
+              <h3>Metadata</h3>
+              <div className="meta-detail-grid">
+                <span>
+                  <Timer size={14} /> Runtime: {data.runtime}
+                </span>
+                <span>
+                  <Film size={14} /> Genre: {data.genre}
+                </span>
+              </div>
+            </div>
 
             <div className="card-block">
               <h3>Cast</h3>
